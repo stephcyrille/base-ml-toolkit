@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from mltoolkit.classifier_processor import ClassifierProcessorTool
+from mlbasetoolkit.superclassifier import ClassifierProcessorTool
 
 
 def test_get_features_by_type_with_non_existing_dtype():
