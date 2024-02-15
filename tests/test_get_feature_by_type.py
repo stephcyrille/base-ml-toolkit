@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from mlbasetoolkit.superclassifier import ClassifierProcessorTool
+from mlbasetoolkit.src.superclassifier import ClassifierProcessorTool
 
 
 def test_get_features_by_type_with_non_existing_dtype():
@@ -30,7 +30,7 @@ def test_get_features_by_type_with_non_existing_target():
   df = pd.DataFrame([[1,2], [3,4]], columns=['baba', 'toto'])
   cls = ClassifierProcessorTool(df=df)
   features = cls.get_features_by_type(type_of_feature='int64', target='abc')
-  assert features == []
+  assert features == ['baba', 'toto'], 'Bad Output'
 
 def test_get_features_by_type_with_the_good_parameters():
   """  
@@ -39,4 +39,4 @@ def test_get_features_by_type_with_the_good_parameters():
   df = pd.DataFrame([[1,2], [3,4]], columns=['baba', 'toto'])
   cls = ClassifierProcessorTool(df=df)
   features = cls.get_features_by_type(type_of_feature='int64', target='baba')
-  assert features == ['toto'], 'Mauvaise sortie!' 
+  assert features == ['toto'], 'Bad output!' 

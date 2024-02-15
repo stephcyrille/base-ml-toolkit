@@ -28,7 +28,7 @@ class ClassifierProcessorTool:
           Les caractéristiques du jeu de données dans la variable cible
       target: str 
           Il s'agit de la valeur à prédire 
-      p_model: KNeighborsClassifier | SVC | GaussianProcessClassifier | DecisionTreeClassifier | RandomForestClassifier | MLPClassifier | AdaBoostClassifier | GaussianNB | QuadraticDiscriminantAnalysis
+      ****p_model: KNeighborsClassifier | SVC | GaussianProcessClassifier | DecisionTreeClassifier | RandomForestClassifier | MLPClassifier | AdaBoostClassifier | GaussianNB | QuadraticDiscriminantAnalysis
           Model de classification qui serait choisit par défaut ce qui évitera de faire le traitement en testant tous les modèles disponibles
   """
 
@@ -36,7 +36,7 @@ class ClassifierProcessorTool:
                 df:pd.DataFrame = pd.DataFrame([]),
                 features:list[str] = [],
                 target:str = '',
-                p_model:KNeighborsClassifier | SVC | GaussianProcessClassifier | DecisionTreeClassifier | RandomForestClassifier | MLPClassifier | AdaBoostClassifier | GaussianNB | QuadraticDiscriminantAnalysis =  None
+                # p_model:KNeighborsClassifier | SVC | GaussianProcessClassifier | DecisionTreeClassifier | RandomForestClassifier | MLPClassifier | AdaBoostClassifier | GaussianNB | QuadraticDiscriminantAnalysis = None
                ) -> None:
     self.df:pd.DataFrame = df
     self.features:list[str] = features
@@ -53,7 +53,7 @@ class ClassifierProcessorTool:
       {"Naive Bayes": GaussianNB()}, 
       {"QDA": QuadraticDiscriminantAnalysis()}
     ]
-    self.p_model = p_model
+    # self.p_model = p_model
   
   def __str__(self) -> str:
     return f"Super classifier\nFeatures: {self.features}\nTarget: {self.target}\nModels list: {[list(x.keys())[0] for x in self.models]}"
@@ -106,6 +106,7 @@ class ClassifierProcessorTool:
       if '' != target:
         if target in columns:
           columns.remove(target)
+          return columns
         else:
           return columns
       else:
